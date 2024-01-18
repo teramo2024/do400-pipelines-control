@@ -1,23 +1,36 @@
-node('nodejs') {
+pipeline {
 
-stage('Checkout') {
+agent {
 
-git branch: 'main',
+node {
 
-url: 'https://github.com/teramo2024/do400-pipelines-control'
-
+label 'nodejs'
 
 }
 
+}
+
+stages {
+
 stage('Backend Tests') {
+
+steps {
 
 sh 'node ./backend/test.js'
 
 }
 
+}
+
 stage('Frontend Tests') {
 
+steps {
+
 sh 'node ./frontend/test.js'
+
+}
+
+}
 
 }
 
